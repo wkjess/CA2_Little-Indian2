@@ -44,8 +44,8 @@ router.get('/get/html', function (req, res) {
 
     res.writeHead(200, { 'Content-Type': 'text/html' }); //We are responding to the client that the content served back is HTML and the it exists (code 200)
 
-    var xml = fs.readFileSync('BeautyWellness.xml', 'utf8'); //We are reading in the XML file
-    var xsl = fs.readFileSync('BeautyWellness.xsl', 'utf8'); //We are reading in the XSL file
+    var xml = fs.readFileSync('LittleIndian.xml', 'utf8'); //We are reading in the XML file
+    var xsl = fs.readFileSync('LittleIndian.xsl', 'utf8'); //We are reading in the XSL file
 
     var doc = xmlParse(xml); //Parsing our XML file
     var stylesheet = xmlParse(xsl); //Parsing our XSL file
@@ -62,7 +62,7 @@ router.post('/post/json', function (req, res) {
 
         console.log(obj)
 
-        xmlFileToJs('BeautyWellness.xml', function (err, result) {
+        xmlFileToJs('LittleIndian.xml', function (err, result) {
             
             if (err) throw (err);
 
@@ -70,7 +70,7 @@ router.post('/post/json', function (req, res) {
 
             console.log(JSON.stringify(result, null, "  "));
 
-            jsToXmlFile('BeautyWellness.xml', result, function (err) {
+            jsToXmlFile('LittleIndian.xml', result, function (err) {
             
                 if (err) console.log(err);
             
@@ -93,7 +93,7 @@ router.post('/post/delete', function(req, res) {
     console.log(obj)
 
     // Function to read in XML file, convert it to JSON, delete the required object and write back to XML file
-    xmlFileToJs('BeautyWellness.xml', function(err, result) {
+    xmlFileToJs('LittleIndian.xml', function(err, result) {
       if (err) throw (err);
       //This is where we delete the object based on the position of the section and position of the entree, as being passed on from index.html
       delete result.salonmenu.section[obj.section].entree[obj.entree];
@@ -101,7 +101,7 @@ router.post('/post/delete', function(req, res) {
       console.log(JSON.stringify(result, null, "  "));
       
       //This is where we convert from JSON and write back our XML file
-      jsToXmlFile('BeautyWellness.xml', result, function(err) {
+      jsToXmlFile('LittleIndian.xml', result, function(err) {
         if (err) console.log(err);
       })
     })
