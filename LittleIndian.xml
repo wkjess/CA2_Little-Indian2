@@ -49,11 +49,11 @@
     </entree>
   </section>
   <section name="Naan">
-    <entree>
+    <entree vegetarian="true">
       <item>Plain Naan</item>
       <price>4.00</price>
     </entree>
-    <entree>
+    <entree >
       <item>Cheese Naan</item>
       <price>5.00</price>
     </entree>
@@ -62,17 +62,17 @@
       <price>4.50</price>
     </entree>
   </section>
-  <section name="Rice">
+  <section name="Dessert">
     <entree>
-      <item>Pilau Rice</item>
-      <price>3.00</price>
-    </entree>
-    <entree>
-      <item>Lemon Rice</item>
+      <item>Payasam</item>
       <price>3.00</price>
     </entree>
     <entree vegetarian="true">
-      <item>Plain Rice</item>
+      <item>Gulab Jamun</item>
+      <price>3.50</price>
+    </entree>
+    <entree vegetarian="true">
+      <item>Fried Ice Cream</item>
       <price>4.00</price>
     </entree>
   </section>
