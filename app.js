@@ -66,7 +66,7 @@ router.post('/post/json', function (req, res) {
             
             if (err) throw (err);
 
-            result.salonmenu.section[obj.sec_n].entree.push({ 'item': obj.item, 'price': obj.price });
+            result.restaurantmenu.section[obj.sec_n].entree.push({ 'item': obj.item, 'price': obj.price });
 
             console.log(JSON.stringify(result, null, "  "));
 
@@ -96,7 +96,7 @@ router.post('/post/delete', function(req, res) {
     xmlFileToJs('LittleIndian.xml', function(err, result) {
       if (err) throw (err);
       //This is where we delete the object based on the position of the section and position of the entree, as being passed on from index.html
-      delete result.salonmenu.section[obj.section].entree[obj.entree];
+      delete result.restaurantmenu.section[obj.section].entree[obj.entree];
       
       console.log(JSON.stringify(result, null, "  "));
       
