@@ -5,6 +5,7 @@ var http = require('http'), //This module provides the HTTP server functionaliti
     xmlParse = require('xslt-processor').xmlParse, //This module allows us to work with XML files
     xsltProcess = require('xslt-processor').xsltProcess, //The same module allows us to utilise XSL Transformations
     xml2js = require('xml2js'); //This module does XML to JSON conversion and also allows us to get from JSON back to XML
+    const expAutoSan = require('express-autosanitizer'); //This module provides the sanitization is the process of removing harmful input from your request. input you store and display might be infected with <script> tags or html content you don’t want to display on your website.
 
 var router = express(); //We set our routing to be handled by Express
 var server = http.createServer(router); //This is where our server gets created
@@ -113,6 +114,28 @@ router.post('/post/delete', function(req, res) {
   res.redirect('back');
 
 });
+
+//* @param {string} name the content between the '&' and the ';'.
+//* @return {string} a single unicode code-point as a string.
+//*/
+function lookupEntity(name) {
+        // TODO: entity lookup as specified by HTML5 actually depends on the
+        // presence of the ";".
+        if (ENTITIES.hasOwnProperty(name)) { return ENTITIES[name]; }
+        var m = name.match(decimalEscapeRe);
+        if (m) {
+            return String.fromCharCode(parseInt(m[1], 10));
+        } else if (!!(m = name.match(hexEscapeRe))) {
+            return String.fromCharCode(parseInt(m[1], 16));
+        } else if (entityLookupElement && safeEntityNameRe.test(name)) {
+            entityLookupElement.innerHTML = '&' + name + ';';
+            var text = entityLookupElement.textContent;
+            ENTITIES[name] = text;
+            return text;
+        } else {
+            return '&' + name + ';';
+        }
+    }
 
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function () {
 
