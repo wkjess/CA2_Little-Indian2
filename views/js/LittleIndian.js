@@ -1,3 +1,5 @@
+// Most of the codes below refer from lecturer, Mikhail Timofeev
+
 // returns a number that represents the sum of all the selected menu
 // item prices.
 function calculateBill(idMenuTable) {

@@ -1,3 +1,5 @@
+// Most of the codes below refer from lecturer, Mikhail Timofeev
+
 function draw_table()
 {
 	$("#results").empty();
