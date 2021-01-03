@@ -85,22 +85,24 @@
                             value="Calculate Bill" id="calcBill">
                     </div>
                 </form>
+                <br>
                 <h2>Collection / Delivery</h2>
 
-                <form action="/action_page.php">
+                <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
                     <label for="fname">First name:</label><br>
                     <input type="text" id="fname" name="fname" value=""><br>
                     <label for="phonenum">Phone number:</label><br>
                     <input type="text" id="phonenum" name="phonenum" value=""><br>
                     <label for="address">Address:</label><br>
                     <input type="text" id="address" name="address" value=""><br><br>
-                    <input type="submit" value="Submit">
+                    <button type="button" onclick="myFunction()">Submit</button><br>
                 </form> 
 
                 <p>Click the "Submit" button, the form-data will be sent to the Restaurant website called "https://www.littleindiacarrickfergus.com/".</p>
             </div>
         </div>
     </div>
+    <br>
     <footer class="footer">
         <div class="container text-center"><span class="text-muted">&copy; 2020</span></div>
     </footer>

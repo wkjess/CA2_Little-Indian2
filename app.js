@@ -14,6 +14,30 @@ router.use(express.static(path.resolve(__dirname, 'views'))); //We define the vi
 router.use(express.urlencoded({ extended: true })); //We allow the data sent from the client to be coming in as part of the URL in GET and POST requests
 router.use(express.json()); //We include support for JSON that is coming from the client
 
+// Function to validate Form for first name
+function validateForm() {
+    var x = document.forms["myForm"]["fname"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+}
+
+// Function to get the value of the input field for phone number
+function myFunction() {
+    var x, text;
+
+    x = document.getElementById("phonenum").value;
+
+    if (isNaN(x) || x < 1 || x > 10) {
+        text = "Input invalid";
+    } else {
+        text = "Input valid";
+    }
+    document.getElementById("").innerHTML = text;
+
+}
+
 // Function to read in XML file and convert it to JSON
 function xmlFileToJs(filename, cb) {
 
