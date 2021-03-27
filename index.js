@@ -1,16 +1,30 @@
 // Most of the codes below refer from lecturer, Mikhail Timofeev
 
-var http = require('http'), //This module provides the HTTP server functionalities
-    path = require('path'), //The path module provides utilities for working with file and directory paths
-    express = require('express'), //This module allows this app to respond to HTTP Requests, defines the routing and renders back the required content
-    fs = require('fs'), //This module allows to work witht the file system: read and write files back
-    xmlParse = require('xslt-processor').xmlParse, //This module allows us to work with XML files
-    xsltProcess = require('xslt-processor').xsltProcess, //The same module allows us to utilise XSL Transformations
-    xml2js = require('xml2js'); //This module does XML to JSON conversion and also allows us to get from JSON back to XML
-    const expAutoSan = require('express-autosanitizer'); //This module provides the sanitization is the process of removing harmful input from your request. input you store and display might be infected with <script> tags or html content you don’t want to display on your website.
+const http = require('http'), //This module provides the HTTP server functionalities
+path = require('path'), //The path module provides utilities for working with file and directory paths
+express = require('express'), //This module allows this app to respond to HTTP Requests, defines the routing and renders back the required content
+fs = require('fs'), //This module allows to work witht the file system: read and write files back
+xmlParse = require('xslt-processor').xmlParse, //This module allows us to work with XML files
+xsltProcess = require('xslt-processor').xsltProcess, //The same module allows us to utilise XSL Transformations
+xml2js = require('xml2js'), //This module does XML to JSON conversion and also allows us to get from JSON back to XML
+expAutoSan = require('express-autosanitizer'), //This module provides the sanitization is the process of removing harmful input from your request. input you store and display might be infected with <script> tags or html content you don’t want to display on your website.
+axios = require('axios'),
+logger =  require('morgan'),
+cors = require('cors'),
+bodyParser = require('body-parser'),
+mongoose = require('mongoose');
 
 var router = express(); //We set our routing to be handled by Express
 var server = http.createServer(router); //This is where our server gets created
+
+app.use(express.json()); 
+app.use(expAutoSan.allUnsafe);
+
+//Apply sanitization
+app.post('/', (req, res, next) => {
+    doYourStuff(req.body);
+    res.render("pagewithtrusteddata");
+})
 
 router.use(express.static(path.resolve(__dirname, 'views'))); //We define the views folder as the one where all static content will be served
 router.use(express.urlencoded({ extended: true })); //We allow the data sent from the client to be coming in as part of the URL in GET and POST requests

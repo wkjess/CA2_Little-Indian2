@@ -1,0 +1,30 @@
+{
+  "name": "little-indian2",
+  "version": "0.0.1",
+  "description": "My Little-Indian2 app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-autosanitizer": "^1.0.2",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "path": "^0.12.7",
+    "xml2js": "^0.4.23",
+    "xslt-processor": "^0.11.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wkjess/Little-Indian2.git"
+  },
+  "author": "Kim Jang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wkjess/Little-Indian2/issues"
+  },
+  "homepage": "https://github.com/wkjess/Little-Indian2#readme"
+}
