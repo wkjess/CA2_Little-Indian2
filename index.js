@@ -15,9 +15,12 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose');
 
 var router = express(); //We set our routing to be handled by Express
-var server = http.createServer(router); //This is where our server gets created
+var port = 8000;
+//var server = http.createServer(router); //This is where our server gets created
 
-app.use(express.json()); 
+app.use(bodyParser.json());
+app.use(logger('tiny'));
+app.use(require('./routes')); 
 app.use(expAutoSan.allUnsafe);
 
 //Apply sanitization
@@ -177,9 +180,50 @@ function lookupEntity(name) {
         }
     }
 
-server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function () {
+//server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function () {
 
-    var addr = server.address();
-    console.log("Server listening at", addr.address + ":" + addr.port);
+//    var addr = server.address();
+//    console.log("Server listening at", addr.address + ":" + addr.port);
 
+//});
+
+// http.createServer((req, res)=>{
+//   res.write(users.join(", ")); //display the list of users on the page
+// //   res.write("\n\n"+emails.join(", ")); //display the list of users on the page
+//   res.end(); //end the response
+// }).listen(8000); // listen for requests on port 8000
+
+// let users = []; // names of users will be stored here
+// // let email = [];
+// (async function getNames(){
+//   try{
+//     const {data} = await axios.get("https://swapi.dev/api/people");
+//     console.log(data.results);
+//     users = data.results.map(user=>user.name);
+//     // emails = data.map(email=>email.email);
+//     console.log(users);
+//     // console.log(emails);
+//   } catch(error){
+//     console.log(error)
+//   }
+// })();
+
+// mongoose.connect('mongodb://localhost/test');
+
+// mongoose.connection.on('error', (err) => { 
+//     console.log('Mongodb Error: ', err); 
+//     process.exit();
+// });
+// mongoose.connection.on('connected', () => { 
+//     console.log('MongoDB is successfully connected');
+// });
+
+app.listen(port, function(err){
+    console.log('Listening on port: ' + port);
 });
+
+const dbURI = "mongodb://localhost/test";
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then((result) => console.log('connected to db'))
+        .catch((err) => console.log(err));
