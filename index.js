@@ -1,10 +1,11 @@
 var http = require("http"),
-axios = require("axios"),
+//axios = require("axios"),
 logger = require('morgan'),
 cors = require('cors'),
 express = require('express'),
 bodyParser = require('body-parser'),
-mongoose = require('mongoose');
+mongoose = require('mongoose'),
+exphbs = require('express-handlebars');
 
 var app = express();
 var port = 8000;
@@ -14,11 +15,15 @@ app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
 
-app.get('/hi/:foo/:bar', (req, res) => {
-    res.json({message: 'hi', data: [
-        req.params.foo,
-        req.params.bar
-    ]})
+app.engine('hbs', exphbs({
+    defaultLayout: 'main',
+    extname: '.hbs'
+}));
+
+app.set('view engine', 'hbs');
+
+app.get('/', (req, res) => {
+    res.render('home');
 });
 
 app.listen(port, function(err) {
