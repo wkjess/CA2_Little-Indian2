@@ -5,7 +5,7 @@ cors = require('cors'),
 express = require('express'),
 bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
-exphbs = require('express-handlebars');
+expAutoSan = require('express-autosanitizer');
 
 var app = express();
 var port = 8000;
@@ -14,13 +14,7 @@ var port = 8000;
 app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
-
-app.engine('hbs', exphbs({
-    defaultLayout: 'main',
-    extname: '.hbs'
-}));
-
-app.set('view engine', 'hbs');
+app.use(expAutoSan.allUnsafe);
 
 app.get('/', (req, res) => {
     res.render('home');
