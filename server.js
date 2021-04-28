@@ -1,27 +1,22 @@
-var http = require("http"),
-//axios = require("axios"),
-logger = require('morgan'),
-cors = require('cors'),
-express = require('express'),
-bodyParser = require('body-parser'),
-mongoose = require('mongoose'),
-expAutoSan = require('express-autosanitizer');
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const app = express();
+const morgan = require('morgan');
 
-var app = express();
-var port = 8000;
+const indexRoutes = require('./routes/index');
 
-//Middleware
-app.use(bodyParser.json());
-app.use(logger('tiny'));
-app.use(require('./routes'));
-app.use(expAutoSan.allUnsafe);
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(_dirname, 'views'));
+app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-    res.render('home');
-});
+app.use(morgan ('dev'));
+app.use(express.urlencoded({extended: false}));
 
-app.listen(port, function(err) {
-    console.log('Listening port: ' + port);
+app.use('/', indexRoutes);
+
+app.listen(app.get ('port'), () => {
+    console.log(`Listening on port${app.get('port')}`);
 });
 
 const dbURI = 'mongodb://localhost/test';
