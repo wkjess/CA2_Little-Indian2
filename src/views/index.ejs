@@ -1,0 +1,80 @@
+<!-- Most of the codes below refer from lecturer, Mikhail Timofeev -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>MusicWorld</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/LittleIndian.css" rel="stylesheet">
+
+    <nav class="navbar navbar-dark bg-dark mb4">
+
+    <a href="/" class ="navbar-brand">MusicWorld </a>
+    </nav>
+</head>
+
+<body>
+
+    <div class="container">
+
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <form action="/add" method="POST">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Music Name" class="form control">
+            </div>
+            <div class="form-group">
+              <textarea name="description" cols="80"
+                placeholder="Description"
+                ></textarea>
+            </div>
+            <button type="submit" class= "btn bun-success btn-block">
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < music.length; i++) { %>
+            <tr>
+              <td><%= i + 1%></td>
+              <td><strong><%= music[i].title %></strong></td>
+              <td><%= music[i].description %></td>
+              <td>
+                <a
+                  href="/delete/<%= music[i]._id %>" class= "btn btn-danger">Delete</a>
+                <a href="/edit/<%= music[i]._id %>" class="btn btn-info">Update</a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+</body>
+
+</html>
