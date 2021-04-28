@@ -1,11 +1,12 @@
 {
-  "name": "little-indian2",
+  "name": "musicworld",
   "version": "0.0.1",
-  "description": "My Little-Indian2 app",
+  "description": "MusicWorld",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,8 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "del": "^6.0.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-autosanitizer": "^1.0.2",
     "express-handlebars": "^5.3.0",
@@ -29,8 +32,11 @@
     "http": "0.0.1-security",
     "mongoose": "^5.12.3",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "xml2js": "^0.4.23",
-    "xslt-processor": "^0.11.5"
+    "xslt-processor": "^0.11.5",
+    "yarn": "^1.22.10"
   }
 }

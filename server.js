@@ -6,7 +6,7 @@ const morgan = require('morgan');
 
 const indexRoutes = require('./routes/index');
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(_dirname, 'views'));
 app.set('view engine', 'ejs');
 
