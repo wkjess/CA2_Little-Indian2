@@ -19,8 +19,6 @@ app.listen(app.get ('port'), () => {
     console.log(`Listening on port${app.get('port')}`);
 });
 
-const dbURI = 'mongodb://localhost/test';
-
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://test:musicworld@cluster0.yva3d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => console.log('Connecting to DB'))
     .catch((err) => console.log(err));
