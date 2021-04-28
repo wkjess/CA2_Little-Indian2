@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var itemSchema = new mongoose.Schema({ 
+const Scheme = mongoose.Schema;
+
+const MusicSchema = new Schema({
+
     name: { type: String, unique: true},
-    item: String,
-    price: Number
-},
-{ vegetarian: true }
-);
+    description: String
+});
 
-module.exports = mongoose.model('Item', itemSchema);
+module.exports = mongoose.model('music', MusicSchema);
