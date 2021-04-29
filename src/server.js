@@ -19,7 +19,7 @@ app.listen(app.get ('port'), () => {
     console.log(`Listening on port${app.get('port')}`);
 });
 
-mongoose.connect('mongodb+srv://test:musicworld@cluster0.yva3d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { 
+mongoose.connect('mongodb+srv:// ', { 
     useNewUrlParser: true, 
     useUnifiedTopology: true 
 })
